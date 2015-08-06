@@ -38,7 +38,7 @@ Struct has two members:
 2. section
 ```
 
-### Challenege in the implementation of scrolling through tables.
+### Challenge in the implementation of scrolling through tables.
 
 Tables need optimization. iPhone users want to be able to swipe along a list quickly. Each row is a fairly complex view object, having to swipe through hundreds of rows, that is a lot of objects to allocate. Apple worked out a caching scheme to reuse cell objects.
 
