@@ -181,4 +181,4 @@ There are times that straight primitives can be problematic, such as if a variab
 Goal is to use delegates to create many different customized behaviors using one view.
 
 Text Fields App - git checkout step3.1-textFieldsApp
-
+Text Fields Challenge App - git checkout step3.2-textFieldsChallengeApp-solution
