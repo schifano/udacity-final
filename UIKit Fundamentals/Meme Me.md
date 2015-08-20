@@ -109,5 +109,4 @@ Although the row height was set to be greater (around 150) in Storyboard, runnin
 
 But on static cells, rowHeight set on individual cells can override UITableView’s."
 
-Makes sense. I fixed this by adjusting the tableView.rowHeight in viewWillAppear. Note - there is now tableView.rowWidth. That's a whole 'nother thing.
-
+Makes sense. I fixed this by adjusting the tableView.rowHeight in viewWillAppear. Note - there is no tableView.rowWidth. That's a whole 'nother thing.
