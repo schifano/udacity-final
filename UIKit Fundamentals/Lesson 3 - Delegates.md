@@ -176,6 +176,53 @@ So you won't get any performance penalty.
 
 There are times that straight primitives can be problematic, such as if a variable may conceivably be used to store data which could overflow, such as on 64-bit. In general, using architecture-dependent typedefs is safer, in that code is less likely to explode on a different architecture. However, sometimes using a 32-bit type can be completely safe and save you memory. The size of primitives may be less of an issue in a JVM, but Obj-C and C are compiled, and mixing 32 and 64 bit libraries and code is indeed problematic. 
 
+### NSNotFound
+
+NSNotFound is typically used by various methods and functions that search for items in serial data and return indices, such as characters in a string object or id objects in an NSArray object.
+
+A value that indicates that an item requested couldn’t be found or doesn’t exist.
+
+<https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/#//apple_ref/doc/constant_group/NSNotFound>
+
+### What is an In-Out Parameter?
+
+Variable parameters, as described above, can only be changed within the function itself. If you want a function to modify a parameter’s value, and you want those changes to persist after the function call has ended, define that parameter as an in-out parameter instead.
+
+You place an ampersand (&) directly before a variable’s name when you pass it as an argument to an inout parameter, to indicate that it can be modified by the function.
+
+### emojiStringRange = newText.rangeOfString(emojiString, options: NSStringCompareOptions.CaseInsensitiveSearch)
+
+rangeOfString, requires the NSStringCompareOptions
+Finds and returns the range of the first occurrence of a given string within the receiver.
+
+### What is the difference between "modulo" and "remainder operator in Swift"?
+
+The remainder operator (%) is also known as a modulo operator in other languages. However, its behavior in Swift for negative numbers means that it is, strictly speaking, a remainder rather than a modulo operation.
+
+```
+To determine the answer for a % b, the % operator calculates the following equation and returns remainder as its output:
+
+a = (b x some multiplier) + remainder
+
+where some multiplier is the largest number of multiples of b that will fit inside a.
+
+Inserting 9 and 4 into this equation yields:
+
+9 = (4 x 2) + 1
+
+The same method is applied when calculating the remainder for a negative value of a:
+
+-9 % 4   // equals -1
+Inserting -9 and 4 into the equation yields:
+
+-9 = (4 x -2) + -1
+
+giving a remainder value of -1.
+
+The sign of b is ignored for negative values of b. This means that a % b and a % -b always give the same answer.
+
+```
+
 ## Udacity Example Apps
 
 Goal is to use delegates to create many different customized behaviors using one view.

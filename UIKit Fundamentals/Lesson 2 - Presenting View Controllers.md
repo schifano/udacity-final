@@ -69,6 +69,16 @@ IBAction func rollTheDice() {
 }
 ```
 
+### 2015-08-02 13:50:43.813 Roshambo[7783:883810] Warning: Attempt to present <Roshambo.ResultViewController: 0x7f98a2c81b70> on <Roshambo.BeginMatchViewController: 0x7f98a2f07d60> whose view is not in the window hierarchy!
+
+One window on your phone, at all times. The views don't count.
+
+<http://stackoverflow.com/questions/11862883/whose-view-is-not-in-the-window-hierarchy>
+
+Where are you calling this method from? I had an issue where I was attempting to present a modal view controller within the viewDidLoad method. The solution for me was to move this call to the viewDidAppear: method.
+
+My presumption is that the view controller's view is not in the window's view hierarchy at the point that it has been loaded (when the viewDidLoad message is sent), but it is in the window hierarchy after it has been presented (when the viewDidAppear: message is sent).
+
 ## Quiz Questions
 
 ### For the following user interface items, indicate whether there is a preference for navigation (N) or modal (M) presentation.
@@ -79,7 +89,6 @@ A self contained task that should be completed or abandoned | M
 A hierarchy of options in which users make one choice per page and retrace their steps | N
 Alert messages | M
 A list of items, with a detail page associated with each | N
-
 
 ## Example Apps
 

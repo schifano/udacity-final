@@ -38,6 +38,26 @@ Struct has two members:
 2. section
 ```
 
+### Collection Views vs. Table Views
+
+UICollectionViews and UITableViews have a lot in common. They both employ reusable cells, as well as have delegate and datasource protocols composed of similar methods. Their views are also different: tables are always presented as a vertical column of cells, whereas collections generally appear as a grid (although a Collection View can be laid out vertically as well). Their reusable cells also differ, the UICollectionViewCell class offers fewer default style options than UITableViewCell, often necessitating the creation of custom cells.
+
+### Delegate and Datasource Methods
+
+The 3 essential methods implemented for a Collection View are nearly identical to the 3 essential methods implemented for a Table View. The difference is that Collection View units are referred to as “items” instead of “rows.” Here are those table view methods and their collection view analogs:
+
+```
+UITableView
+tableView(_:numberOfRowsInSection:)
+tableView(_:cellForRowAtIndexPath:)
+tableView(_:didSelectRowAtIndexPath:)
+
+UICollectionView
+collectionView(_:numberOfItemsInSection:)
+collectionView(_:cellForItemAtIndexPath:)
+collectionView(_:didSelectItemAtIndexPath:)
+```
+
 ### Challenge in the implementation of scrolling through tables.
 
 Tables need optimization. iPhone users want to be able to swipe along a list quickly. Each row is a fairly complex view object, having to swipe through hundreds of rows, that is a lot of objects to allocate. Apple worked out a caching scheme to reuse cell objects.
@@ -223,11 +243,11 @@ return cell
 
 ### iOS App Examples
 
-Favorite Things
+Favorite Things - step4.1-favoriteThings-incomplete
 
-Do Re Me
+Do Re Me - step4.4.1-doReMi-complete
 
-Bond Villains
+Bond Villains - step4.5-bondVillains-incomplete
 
-Roshambo With History
+Roshambo With History - step4.8-roshamboWithHistory-solution
 
