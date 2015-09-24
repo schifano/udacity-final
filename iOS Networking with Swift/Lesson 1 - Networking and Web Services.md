@@ -1,6 +1,6 @@
+# Lesson 1 - Networking and Web Services
 
-
-Getting data with HTTP
+## Getting data with HTTP
 
 HTTP - hypertext transfer protocol
 
@@ -27,21 +27,13 @@ If you already know about the HTTP GET method, feel free to continue to the next
 For those unfamiliar, the HTTP GET method can be used to request data from a server using a Uniform Resource Locator (URL). For example, if you wanted to get the data from this course's overview page, you would use the following request:
 
 GET http://www.udacity.com/course/ud421
+
 This request will return all the data associated with the course's overview page--including any images, scripts, and other data required to build the page.
 
 
-
-
-Both the api_key and user_id are required to use flickr.people.getPublicPhotos. However, when testing using the API Explorer (as seen in the video), you only need user_id.
-
-
-
-Review: "Sleeping in the Library"
-
-If you have not already completed the Finished "Sleeping in the Library"?, do so first.
-
 This review will go over the commented sections in the ViewController.swift file:
 
+```
 /* 1 - Define constants */
 let BASE_URL = "https://api.flickr.com/services/rest/"
 let METHOD_NAME = "flickr.galleries.getPhotos"
@@ -106,47 +98,34 @@ If there is data at the URL, then we update the photoImageView and photoTitle!
 /* 9 - Resume (execute) the task */
 task.resume()
 This actually runs/executes our request. Up to this point, all the previous steps just define what we should do when the request runs and completes.
+```
+
+### Lesson 1 Terms
+
+* Networking
+* Hypertext Transfer Protocol (HTTP)
+* Uniform Resource Locator (URL)
+* HTTP GET method
+* Web services and APIs
+
+## Lessons Learned
+
+Term | Description | 
+:------------ | :-------------
+NSURLSession class / object | API for downloading content via HTTP. Asynchronous, returns data to a completion handler block or custom delegate methods.
+NSURLRequest object | Represents a URL load request. Encapsulates two basic data elements of a load request: 1) the URL to load 2) the policy to use when consulting the URL content cache made available by the implementation
+NSURLSessionDataTask class | A data task returns data directly to the app (in memory) as one or more NSData objects
+NSURLComponents class | Designed to parse URLs based on RFC 3986 and to construct URLs from their constituent parts. Create a URL components object: 1) from an NSString object that contains a URL 2) from an NSURL object 3) from scratch by using the default initializer
 
 
-Lesson 1 Reference Sheet
+There are three types of configuration objects, there are similarly **three types of session**:
 
-Here is a summary of things included in this lesson.
+* *default sessions* - behave much like NSURLConnection
+* *ephemeral sessions* - do not cache anything to disk
+* *download sessions* - store the results in a file and continue transferring data even when your app is suspended, exits, or crashes.
 
-Terms
+Within those sessions, you can schedule three types of tasks: 
 
-Networking
-Hypertext Transfer Protocol (HTTP)
-Uniform Resource Locator (URL)
-HTTP GET method
-Web services and APIs
-Concepts
-
-Identified web services by the data they expose
-Registered for a web service (Flickr)
-Explored a web service's API (Flickr)
-Ran a web service method from an iOS app
-In this lesson, the implementation was done for you, but in the next lesson you will be writing these yourself
-
-
-Specification: “Flick Finder”
-
-Overview
-
-“Flick Finder” is an iOS application that allows users to search Flickr for images based on a search string or location. Each search displays a random image and its title from Flickr.
-
-Layout
-
-See prototype image
-Functionality
-
-Users can search Flickr's images using a string
-String must be non-empty
-Display a random image pertaining to the search
-If no images exist for the search, notify the user
-Users can search Flickr's images using latitude and longitude
-Latitude and longitude must be non-empty
-Latitude must be provided as a number between -90 and 90
-Longitude must be provided as a number between -180 and 180
-Display a random image pertaining to the search
-If no images exist for the search, notify the user
-The app must be laid out in a format that matches the prototype image
+* *data tasks* - for retrieving data to memory
+* *download tasks* - for downloading a file to disk
+* *upload tasks* - for uploading a file from disk and receiving the response as data in memory
