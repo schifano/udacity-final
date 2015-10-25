@@ -66,3 +66,15 @@ Maybe you have an extra bracket somewhere (or missing one).
 ```
 
 Chances are there is a framework that needs to be manually added to your build phase because it’s not automatically included in the SDK.
+
+### Why use AVCaptureSession * session = [AVCaptureSession new]; instead of AVCaptureSession * session = [[AVCaptureSession alloc] init];?
+
++new is equivalent to +alloc/-init in Apple's NSObject implementation. 
+Being explicit about declarations is sometimes better than being implicit (alloc-init is more explicit than new). Using either command generates the same output. Using new doesn't support custom initializers (like initWithString).
+
+```
+2013-03-06 16:45:44.125 XMLTest[18370:207] Allocating...
+2013-03-06 16:45:44.128 XMLTest[18370:207] Initializing…
+```
+
+<http://stackoverflow.com/questions/719877/use-of-alloc-init-instead-of-new>
