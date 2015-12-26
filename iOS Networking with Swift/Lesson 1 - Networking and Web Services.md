@@ -118,6 +118,44 @@ This actually runs/executes our request. Up to this point, all the previous step
 
 ## Lessons Learned
 
+### What is the difference between authentication and authorization?
+
+**Authentication** ensures someone's identity; another way of saying it might be "they are who they say they are"
+
+**Authorization** provides someone access to do something; another way of saying it might be "they are allowed to do this action”
+
+### What is OAuth?
+
+An open standard for authorization that allows users to log into third parties (Google, Facebook, ...) to reduce the risk of access credentials being compromised
+We will talk more about OAuth in the next lesson
+
+### What is OpenID Connect?
+
+An authentication layer built on top of the OAuth 2.0 protocol that allows clients to verify the identity of a user based on authentication performed by an authorization server
+OpenID Connect can also be used to obtain basic profile information about a user in an interoperable and RESTful manner
+
+### What are the general steps for making a networking request?
+
+        /* 1. Set the parameters */
+        /* 2. Build the URL */
+        /* 3. Configure the request */
+        /* 4. Make the request */
+        /* 5. Parse the data */
+        /* 6. Use the data! */
+        /* 7. Start the request */
+
+### What is Apple App Transport Security?
+
+Apple now requires all HTTP requests to be made securely using HTTPS through ATS (Apple Transport Security). You can still, however, send HTTP (non-secure) requests if you configure ATS accordingly.
+
+Introduced in iOS 9 and OS X El Capitan
+App Transport Security enforces best practices for secure network connections — notably, TLS 1.2 and forward secrecy
+App Transport Security is enabled by default when using NSURLSession, NSURLConnection, or CFURL in iOS 9 or OS X El Capitan. 
+
+### Why would it be important to use HTTPS over HTTP?
+
+Using HTTP requests means that anyone watching the networking traffic could potentially see the username and password being used as parameters with each login attempt. An application called Charles can enable you to see all the web traffic from your machine. An HTTPS call encrypts all the data being sent from the app.
+
 ### What is a UIWebView?
 
 UIWebView - embed web content into your app. Can use this class to move forward and backward in web history. Can set some web content properties programmatically.
@@ -165,6 +203,8 @@ Specifies that the parser should allow top-level objects that are not an instanc
 `
 NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
 `
+### What is a fragment?
+"Top-level" refers to the object in the JSON. Typically the top-level object in JSON is an array or dictionary, but in some cases the instance is neither. It could be an NSString, NSNumber, etc. The fragment is what JSON could be, meaning JSON could not be a whole dictionary with stuff in it but instead just a string.
 
 ### What is the difference between concrete subclass and subclass?
 
