@@ -1,0 +1,2 @@
+### What is virtual memory?
+Virtual memory is a feature of an operating system (OS) that allows a computer to compensate for shortages of physical memory by temporarily transferring pages of data from random access memory (RAM) to disk storage.
