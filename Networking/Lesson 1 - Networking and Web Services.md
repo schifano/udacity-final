@@ -17,7 +17,6 @@ NSURLRequest object | Represents a URL load request. Encapsulates two basic data
 NSURLSessionDataTask class | A data task returns data directly to the app (in memory) as one or more NSData objects
 NSURLComponents class | Designed to parse URLs based on RFC 3986 and to construct URLs from their constituent parts. Create a URL components object: 1) from an NSString object that contains a URL 2) from an NSURL object 3) from scratch by using the default initializer
 
-
 There are three types of configuration objects, there are similarly **three types of session**:
 
 * *default sessions* - behave much like NSURLConnection
@@ -117,6 +116,92 @@ This actually runs/executes our request. Up to this point, all the previous step
 * Web services and APIs
 
 ## Lessons Learned
+
+### Extra argument "key" in call error?
+
+Adding "class" before the "substituteKeyInMethod" func helped the error. Previously, Xcode was highlighting "key: TMDBClient.URLKeys.UserID" to be the issue. The issue was that it appeared we were trying to call an instance method as a class method.
+
+```
+let parameters = [TMDBClient.ParameterKeys.SessionID: TMDBClient.sharedInstance().sessionID!]
+var mutableMethod: String = Methods.AccountIDWatchlistMovies
+mutableMethod = TMDBClient.substituteKeyInMethod(mutableMethod, key: TMDBClient.URLKeys.UserID, value: String(TMDBClient.sharedInstance().userID!))!
+```
+
+```
+/* Helper: Substitute the key for the value that is contained within the method name */
+class func substituteKeyInMethod(method: String, key: String, value: String) -> String? {
+	if method.rangeOfString("{\(key)}") != nil {
+		return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
+   } else {
+		return nil
+	}
+}
+```
+
+### What is a UIActivityIndicatorView?
+
+An activity indicator shows that a task is in progress. An activity indicator appears as a "gear" that is either spinning or stopped.
+
+### What is an NSMutableURLRequest?
+
+NSMutableURLRequest is a subclass of NSURLRequest provided to aid developers who may find it more convenient to mutate a single request object for a series of URL load requests instead of creating an immutable NSURLRequest object for each load.
+
+It has the addValue:forHTTPHeaderField: method
+
+Term | Definition
+:-----| :----
+value	 | The value for the header field.
+field	 | The name of the header field. In keeping with the HTTP RFC, HTTP header field names are case-insensitive.
+
+### What is an HTTP header field?
+
+"Content-type" is known as a MIME type that indicates what kind of data an HTTP response contains.
+
+```
+// Statement 1 is a MIME type for a response to a web form that has been filled in.
+[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+
+// Statement 2 is the MIME type for a standard HTML page which has a characterset of UTF-8 (basically, international support versus standard ASCII or something else).
+[request setValue:@"text/html; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+
+```
+
+```
+request.HTTPMethod = "POST"
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
+```
+
+<https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#General_format>
+
+### What does .PrettyPrinted mean?
+
+NSJSONWritingPrettyPrinted
+Specifies that the JSON data should be generated with whitespace designed to make the output more readable. If this option is not set, the most compact possible JSON representation is generated.
+
+```
+NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
+```
+
+### What is the differene between HTTP post and HTTP get?
+
+* GET - Requests data from a specified resource
+* POST - Submits data to be processed to a specified resource
+
+### What is a network condition?
+The latency and bandwidth of an Internet connection.
+
+### What is Network Link Conditioner?
+Network Link Conditioner is software from Apple that comes bundled with Hardware IO Tools. It can change the network environment of the iPhone Simulator according to built-in presets:
+
+* EDGE
+* 3G
+* DSL
+* WiFi
+* High Latency DNS
+* Very Bad Network
+* 100% Loss
 
 ### What is the difference between authentication and authorization?
 
