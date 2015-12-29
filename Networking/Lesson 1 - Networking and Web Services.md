@@ -115,6 +115,13 @@ This actually runs/executes our request. Up to this point, all the previous step
 * HTTP GET method
 * Web services and APIs
 
+### Lesson 4 Concepts
+
+* Designed an API client by identifying the high-level tasks associated with a web service and creating abstractions for them
+* Implemented an authorization flow similiar to OAuth
+* Refactored networking code using the MVC design approach
+* Extended the functionality of an existing application
+
 ## Lessons Learned
 
 ### Extra argument "key" in call error?
